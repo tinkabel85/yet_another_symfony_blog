@@ -1,0 +1,55 @@
+{% extends './base.html.twig' %}
+
+{% block title %}
+	Blogs List
+{% endblock %}
+{% block stylesheets %}
+	<style>
+		.align-center {
+			margin: 0 auto;
+		}
+	</style>
+{% endblock %}
+
+{% block body %}
+	<div class="row">
+		<div class="col-lg-8 align-center">
+			<h1>All Posts</h1>
+			<table class="table table-striped ">
+				<thead class="thead-dark">
+
+					<tr>
+						<th>Title</th>
+						<th>Content</th>
+						<th>Actions</th>
+						<th>Actions</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for post in posts %}
+						<tr>
+							<td>{{ post.title }}</td>
+							<td>{{ post.content }}</td>
+							<td>
+								<a href="{{ path('edit_post', {id: post.id}) }}" class="btn btn-warning btn-sm">Edit</a>
+							</td>
+							<td>
+								<a href="{{ path('delete_post', {id: post.id}) }}" onclick="return confirm('Are you sure?');" class="btn btn-danger btn-sm">DELETE</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+
+		</div>
+	</div>
+
+	<div class="row">
+		<div class="col-lg-8  align-center">
+			<a href="{{ path('create_new') }}" class="btn btn-primary">Create blog</a>
+
+		</div>
+	</div>
+
+
+{% endblock %}
