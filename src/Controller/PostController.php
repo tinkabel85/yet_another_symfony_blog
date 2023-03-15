@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 use Symfony\Component\Routing\Annotation\Route;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 
 class PostController extends AbstractController
 {
@@ -34,7 +35,11 @@ class PostController extends AbstractController
     $form = $this->createFormBuilder($post)
       ->add('title', TextType::class)
       ->add('content', TextareaType::class)
-      ->add('save', SubmitType::class, ['label' => 'Create Post'])
+      ->add('save', SubmitType::class, [
+        'label' => 'Create Post', 'attr' => [
+          'class' => 'btn btn-outline-success',
+        ],
+      ],)
       ->getForm();
 
     $form->handleRequest($request);
@@ -61,7 +66,8 @@ class PostController extends AbstractController
     return $this->redirectToRoute('blog_list');
   }
 
-  public function editPost(Post $post, EntityManagerInterface $entityManager, Request $request) {
+  public function editPost(Post $post, EntityManagerInterface $entityManager, Request $request)
+  {
     $form = $this->createForm(PostType::class, $post);
 
     $form->handleRequest($request);
@@ -76,5 +82,13 @@ class PostController extends AbstractController
     return $this->render('post/create.twig', [
       'form' => $form->createView(),
     ]);
+  }
+
+  public function showPost(Post $post = null): Response
+  {
+    if (!$post) {
+      throw $this->createNotFoundException('The post does not exist');
+    }
+    return $this->render('post/show.twig', ['post' => $post]);
   }
 }

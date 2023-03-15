@@ -28,7 +28,10 @@
 				<tbody>
 					{% for post in posts %}
 						<tr>
-							<td>{{ post.title }}</td>
+							<td>
+								<a href="{{ path('show_post', {id: post.id}) }}" class="badge badge-light display-4" style="font-size: 16px;">{{ post.title }}
+								</a>
+							</td>
 							<td>{{ post.content }}</td>
 							<td>
 								<a href="{{ path('edit_post', {id: post.id}) }}" class="btn btn-warning btn-sm">Edit</a>
@@ -37,19 +40,10 @@
 								<a href="{{ path('delete_post', {id: post.id}) }}" onclick="return confirm('Are you sure?');" class="btn btn-danger btn-sm">DELETE</a>
 							</td>
 						</tr>
-					{% endfor %}
+					</tbody>
 				</tbody>
-			</table>
-
-		</div>
-	</div>
-
-	<div class="row">
-		<div class="col-lg-8  align-center">
-			<a href="{{ path('create_new') }}" class="btn btn-primary">Create blog</a>
-
-		</div>
-	</div>
-
-
-{% endblock %}
+			</tr>
+		{% endfor %}
+	</tbody>
+</table></div></div><div class="row"><div class="col-lg-8  align-center">
+<a href="{{ path('create_new') }}" class="btn btn-primary">Create blog</a></div></div>{% endblock %}
