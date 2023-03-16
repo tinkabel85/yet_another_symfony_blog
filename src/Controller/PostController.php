@@ -27,8 +27,7 @@ class PostController extends AbstractController
   public function createPost(Request $request, EntityManagerInterface $entityManager): Response
   {
     $post = new Post();
-    // $post->setTitle('Title');
-    // $post->setContent('This is a new post');
+    
 
     $form = $this->createForm(PostType::class, $post);
 
