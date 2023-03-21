@@ -14,8 +14,7 @@ class LuckyController extends AbstractController
   public function __construct(
     private CountryRepository $countryRepository,
     private EntityManagerInterface $entityManager
-  ) {
-  }
+  ) {}
 
   // public function number(): Response
   // {
@@ -30,8 +29,9 @@ class LuckyController extends AbstractController
   {
     //var_dump($this->entityManager->getConnection()->fetchAllAssociative('show tables'));
     //die();
+
     $country = $this->countryRepository->find('AFG');
-    
+
     //update
     // $country->setName(substr(($country->getName()), 0, -2));
     // $this->entityManager->persist($country);
