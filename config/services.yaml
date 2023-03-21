@@ -26,5 +26,11 @@ services:
     App\Repository\AuthorRepository:
         autowire: true
 
+    App\Repository\CountryRepository:
+        autowire: true
+    
+    App\Controller\LuckyController:
+        autowire: true
+
     # add more service definitions when explicit configuration is needed
     # please note that last definitions always *replace* previous ones
