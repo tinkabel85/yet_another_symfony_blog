@@ -20,6 +20,7 @@ class AuthorTest extends TestCase
     $post = new Post();
 
     $author->addPost($post);
+
     $this->assertTrue($author->getPosts()->contains($post));
     $this->assertTrue($post->getAuthor()->contains($author));
   }
