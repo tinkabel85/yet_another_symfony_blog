@@ -24,7 +24,5 @@ class PostControllerTest extends TestCase
   //   $entityManager->expects($this->once())
   //     ->method('flush');
 
-
-
   // }
 }
