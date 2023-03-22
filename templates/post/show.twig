@@ -8,12 +8,23 @@
 	<div class="container">
 		<div class="row justify-content-center">
 			<div class="col-lg-8">
+
 				<h1 class="mb-4">{{ post.title }}</h1>
+				<div>
+
+					By:
+					{% for author in post.author %}
+						<p class="mb-1">{{ author.name }}</p>
+
+					{% endfor %}
+				</div>
+				<hr>
 				<p class="mb-5">{{ post.content }}</p>
+				<hr>
 				<a href="{{ path('blog_list') }}" class="btn btn-outline-info btn-sm">Back to list</a>
 				<a href="{{ path('edit_post', {id: post.id}) }}" class="btn btn-warning btn-sm">Edit</a>
 				<a href="{{ path('delete_post', {id: post.id}) }}" onclick="return confirm('Are you sure?');" class="btn btn-danger btn-sm">DELETE</a>
-			</div>
+			</p>
 		</div>
 	</div>
-{% endblock %}
+</div>{% endblock %}
