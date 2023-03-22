@@ -29,7 +29,11 @@ class PostController extends AbstractController
 
   public function list(): Response
   {
-    return $this->render('post/index.twig', ['posts' => $this->postRepository->findAll()]);
+    $repository = $this->entityManager->getRepository(Post::class);
+    $posts = $repository->findAll();
+    //dd($posts);
+    // return $this->render('post/index.twig', ['posts' => $this->postRepository->findAll()]);
+    return $this->render('post/index.twig', ['posts' => $posts]);
   }
 
   public function createPost(Request $request): Response
