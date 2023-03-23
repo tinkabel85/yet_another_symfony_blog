@@ -6,6 +6,10 @@ controllers:
 app_lucky_number:
     path: /lucky/number
     controller: App\Controller\LuckyController::find
+
+curl_get:
+    path: /curl/get
+    controller: App\Controller\CurlController::get
     
 blog_list: 
   path: /
